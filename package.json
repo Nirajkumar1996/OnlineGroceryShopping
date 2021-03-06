@@ -1,0 +1,16 @@
+{
+  "name": "onlineshopping",
+  "version": "1.0.0",
+  "description": "online Grocery Shopping using MERN",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "2003, 2006",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.19"
+  }
+}
