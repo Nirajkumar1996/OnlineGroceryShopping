@@ -19,6 +19,19 @@ module.exports = (err, req, res, next) => {
 
     error.message = err.message;
 
+    //Wrong Mongoose Object ID Error ,we have to handle it in Production Mode for user
+    if (err.name === "CastError") {
+      const message = `Resource not found, Inavlid: ${err.path}`;
+      //400 id BAD REQUEST
+      error = new ErrorHandler(message, 400);
+    }
+
+    //Handling Mongoose validation errors
+    if (err.name === "ValidationError") {
+      const message = Object.values(err.errors).map((value) => value.message);
+      error = new ErrorHandler(message, 400);
+    }
+
     res.status(error.statusCode).json({
       success: false,
       message: error.message || "Internal Server Error",
