@@ -24,7 +24,7 @@ class APIFeatures {
     const queryCopy = { ...this.queryStr };
 
     //console.log(queryCopy); //{ keyword: 'Apple', category: 'Fruits' }
-    //Removing fields from query string
+    //*Removing fields from query string
     //why? for filter keyword not present in schema limit &page for pagination
     const removeFields = ["keyword", "limit", "page"];
     removeFields.forEach((el) => delete queryCopy[el]);
@@ -32,12 +32,21 @@ class APIFeatures {
 
     //console.log(queryCopy); //{ price: { gte: '1', lte: '500' } }
     //since gte and lte are mongodb operator we have to only add $ before them
-    //advanced filter for price , ratings etc
+    //*advanced filter for price , ratings etc
     let queryStr = JSON.stringify(queryCopy);
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (match) => `$${match}`);
     //console.log(queryStr); //{"price":{"$gte":"1","$lte":"21"}}
 
     this.query = this.query.find(JSON.parse(queryStr));
+    return this;
+  }
+
+  pagination(resPerPage) {
+    const currentPage = Number(this.queryStr.page) || 1;
+    //for page 2 we have to skip first 4 products
+    const skip = resPerPage * (currentPage - 1);
+
+    this.query = this.query.limit(resPerPage).skip(skip);
     return this;
   }
 }
