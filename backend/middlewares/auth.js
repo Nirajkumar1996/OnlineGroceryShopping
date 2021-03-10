@@ -18,3 +18,19 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
 
   next();
 });
+
+//Handling user roles
+exports.authorizeRoles = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(
+        //403 forbidden error
+        new ErrorHandler(
+          `Role (${req.user.role}) is not allowed to access this resource`,
+          403
+        )
+      );
+    }
+    next();
+  };
+};
