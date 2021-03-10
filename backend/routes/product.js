@@ -9,8 +9,10 @@ const {
   deleteProduct,
 } = require("../controllers/productController");
 
+const { isAuthenticatedUser } = require("../middlewares/auth");
+
 //Create new product route only admin can use
-router.route("/admin/product/new").post(newProduct);
+router.route("/admin/product/new").post(isAuthenticatedUser, newProduct);
 
 //get All products route
 router.route("/products").get(getProducts);
@@ -19,6 +21,9 @@ router.route("/products").get(getProducts);
 router.route("/product/:id").get(getSingleProduct);
 
 //update or delete product route only admin can use
-router.route("/admin/product/:id").put(updateProduct).delete(deleteProduct);
+router
+  .route("/admin/product/:id")
+  .put(isAuthenticatedUser, updateProduct)
+  .delete(isAuthenticatedUser, deleteProduct);
 
 module.exports = router;
