@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 
 import Search from "./Search";
 
@@ -11,7 +11,9 @@ const Header = () => {
       <nav className="navbar row">
         <div className="col-12 col-md-3">
           <div className="navbar-brand">
-            <img src="/images/Fresh_Mart.PNG" />
+            <Link to="/">
+              <img src="/images/Fresh_Mart.PNG" />
+            </Link>
           </div>
         </div>
 
