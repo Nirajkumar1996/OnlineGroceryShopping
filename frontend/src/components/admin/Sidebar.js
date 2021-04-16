@@ -47,12 +47,6 @@ const Sidebar = () => {
               <i className="fa fa-users"></i> Users
             </Link>
           </li>
-
-          <li>
-            <Link to="/admin/reviews">
-              <i className="fa fa-star"></i> Reviews
-            </Link>
-          </li>
         </ul>
       </nav>
     </div>

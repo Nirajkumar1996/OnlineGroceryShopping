@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { MDBDataTable } from "mdbreact";
 
 import MetaData from "../layout/MetaData";
@@ -27,7 +26,7 @@ const OrdersList = ({ history }) => {
       alert.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, alert, error, , history]);
+  }, [dispatch, alert, error, history]);
 
   const setOrders = () => {
     const data = {
@@ -52,10 +51,6 @@ const OrdersList = ({ history }) => {
           field: "status",
           sort: "asc",
         },
-        {
-          label: "Actions",
-          field: "actions",
-        },
       ],
       rows: [],
     };
@@ -65,6 +60,7 @@ const OrdersList = ({ history }) => {
         id: order._id,
         numofItems: order.orderItems.length,
         amount: `₹${order.totalPrice}`,
+
         status:
           order.orderStatus &&
           String(order.orderStatus).includes("Delivered") ? (
@@ -72,19 +68,6 @@ const OrdersList = ({ history }) => {
           ) : (
             <p style={{ color: "red" }}>{order.orderStatus}</p>
           ),
-        actions: (
-          <Fragment>
-            <Link
-              to={`/admin/order/${order._id}`}
-              className="btn btn-primary py-1 px-2"
-            >
-              <i className="fa fa-eye"></i>
-            </Link>
-            <button className="btn btn-danger py-1 px-2 ml-2">
-              <i className="fa fa-trash"></i>
-            </button>
-          </Fragment>
-        ),
       });
     });
 

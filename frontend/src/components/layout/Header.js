@@ -1,11 +1,9 @@
 import React, { Fragment } from "react";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { logout } from "../../actions/userActions";
-
-import Search from "./Search";
 
 import "../../App.css";
 
@@ -29,10 +27,6 @@ const Header = () => {
               <img src="/images/Fresh_Mart.PNG" />
             </Link>
           </div>
-        </div>
-
-        <div className="col-12 col-md-6 mt-2 mt-md-0">
-          <Route render={({ history }) => <Search history={history} />} />
         </div>
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">

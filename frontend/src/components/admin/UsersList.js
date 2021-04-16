@@ -48,10 +48,6 @@ const UsersList = ({ history }) => {
           field: "role",
           sort: "asc",
         },
-        {
-          label: "Actions",
-          field: "actions",
-        },
       ],
       rows: [],
     };

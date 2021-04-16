@@ -44,24 +44,16 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 //get All products => /api/v1/products?keyword=somename
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
   const resPerPage = 4; //*for pagination
-  const productsCount = await Product.countDocuments(); //we will use it in fontend
 
-  const apiFeatures = new APIFeatures(Product.find(), req.query)
-    .search()
-    .filter();
-
-  let products = await apiFeatures.query;
-  let filteredProductsCount = products.length;
-
+  const productsCount = await Product.countDocuments();
+  const apiFeatures = new APIFeatures(Product.find(), req.query);
   apiFeatures.pagination(resPerPage);
-  //find gives all products from database
   products = await apiFeatures.query;
 
   res.status(200).json({
     success: true,
     productsCount,
     resPerPage,
-    filteredProductsCount,
     products,
   });
 });

@@ -7,13 +7,12 @@ import {
   newProductReducer,
   productReducer,
   productDetailsReducer,
-  newReviewReducer,
 } from "./reducers/productReducers";
 
 import {
   authReducer,
   userReducer,
-  forgotPasswordReducer,
+  //forgotPasswordReducer,
   allUsersReducer,
 } from "./reducers/userReducers";
 
@@ -34,13 +33,12 @@ const reducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   allUsers: allUsersReducer,
-  forgotPassword: forgotPasswordReducer,
+  //forgotPassword: forgotPasswordReducer,
   cart: cartReducers,
   newOrder: newOrderReducer,
   myOrders: myOrdersReducer,
   allOrders: allOrdersReducer,
   orderDetails: orderDetailsReducer,
-  newReview: newReviewReducer,
 });
 
 let initialState = {
